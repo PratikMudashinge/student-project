@@ -1,0 +1,174 @@
+#include<iostream.h>
+#include<conio.h>
+#include<stdio.h>
+#include<string.h>
+class hotel
+{
+  int room_no;
+  char name[20];
+  char add[50];
+  char phone[10];
+  int rent;
+  int days;
+  int foodbill;
+  public:
+  hotel();
+  void bookroom();
+  void orderfood();
+  void showcustomer();
+  void checkout1();
+  };
+  hotel::hotel()
+  {
+  room_no=0;
+  strcpy(name,"not assigned");
+  strcpy(add,"not assigned");
+  strcpy(phone,"0000000000");
+  days=0;
+  rent=0;
+  foodbill=0;
+  }
+    void hotel::orderfood()
+    {
+      int choice,qty;
+      do
+      {
+      clrscr();
+      cout<<"\n---Food Menu---";
+      cout<<"\n1.Tea-Rs.10";
+      cout<<"\n2.Coffee-Rs.20";
+      cout<<"\n3.Burger-Rs.50";
+      cout<<"\n4.Pizza-Rs.100";
+      cout<<"\n5.exit";
+      cout<<"\nEnter choice:";
+      cin>>choice;
+      if(choice>=1&& choice<=4)
+      {
+       cout<<"enter Quantity:";
+       cin>>qty;
+       }
+       switch(choice)
+       {
+       case 1:
+	  foodbill+=qty*10;
+	  break;
+       case 2:
+	  foodbill+=qty*20;
+	  break;
+       case 3:
+	  foodbill+=qty*50;
+	  break;
+       case 4:
+	  foodbill+=qty*100;
+	  break;
+       case 5:
+	  break;
+	  default:
+	  cout<<"Invallid choice!";
+	  }
+	  }while(choice!=5);
+	  cout<<"\n Food ordered successfully!";
+	  getch();
+	  }
+	  void hotel:: showcustomer()
+	  {
+	   clrscr();
+	   if(room_no==0)
+	   {
+	     cout<<"\n No booking found!";
+	     }
+	     else
+	     {
+	      cout<<"\n--Customer Details--";
+	      cout<<"\n Room no:"<<room_no;
+	      cout<<"\n Name:"<<name;
+	      cout<<"\n address:"<<add;
+	      cout<<"\n phone:"<<phone;
+	      cout<<"\n Days stayed:"<<days;
+	      cout<<"\n Room Rent:Rs."<<rent;
+	      cout<<"\n Foodbill:Rs."<<foodbill;
+	      cout<<"\n Total bill:Rs."<<rent+foodbill;
+	      }
+	      getch();
+	      }
+	      void hotel::checkout1()
+	      {
+	       clrscr();
+	       if(room_no==0)
+	       {
+		cout<<" No customer checked in!";
+		}
+		else
+		{
+		 cout<<"--Final Bill-- ";
+		 cout<<" Room rent:Rs."<<rent<<endl;
+		 cout<<" Food Bill:Rs."<<foodbill<<endl;
+		 cout<<"Grand Total:Rs"<<rent+foodbill<<endl;
+		 cout<<"Customer"<<name<<"checked out successfully!!"<<endl;
+		 room_no=0;
+		 strcpy(name,"Not Assigned");
+		 strcpy(add,"Not Assigned");
+		 strcpy(phone,"0000000000");
+		 days=0;
+		 rent=0;
+		 foodbill=0;
+		 }
+		 getch();
+		 }
+  void hotel:: bookroom()
+  {
+    clrscr();
+    cout<<"\n Enter room number:";
+    cin>>room_no;
+    cout<<"Enter customer name:";
+    gets(name);
+    cout<<"Enter address:";
+    gets(add);
+    cout<<"Enter phone:";
+    gets(phone);
+    cout<<"Enter number of days of stay:";
+    cin>>days;
+    rent=days*1000;
+    cout<<"\n Room Booked Successfully!";
+    getch();
+    }
+    void main()
+		 {
+		  clrscr();
+		  hotel h;
+		  int choice;
+		   do
+		  {
+		   clrscr();
+		   cout<<"\n---Hotel Management System---";
+		   cout<<"\n 1.book room:";
+		   cout<<"\n 2.Order food:";
+		   cout<<"\n 3.show customer details:";
+		   cout<<"\n 4.Chekout";
+		   cout<<"\n 5.exit";
+		   cout<<"\nEnter your choice:";
+		   cin>>choice;
+		   switch(choice)
+		   {
+		   case 1:
+		     h.bookroom();
+		     break;
+		   case 2:
+		     h.orderfood();
+		     break;
+		   case 3:
+		     h.showcustomer();
+		     break;
+		   case 4:
+		     h.checkout1();
+		     break;
+		   case 5:
+		     cout<<"\n Exiting...";
+		     break;
+		    default:
+		     cout<<"\n Invalid choice!";
+		     getch();
+		     }
+		     }while(choice!=5);
+		     getch();
+}
